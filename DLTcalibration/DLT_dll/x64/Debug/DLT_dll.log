@@ -1,0 +1,7 @@
+﻿  DLT_Method.cpp
+C:\SSU\GitPractice\DLTcalibration\DLT_dll\DLT_Method.cpp(103,43): error C2664: 'bool cv::solve(cv::InputArray,cv::InputArray,cv::OutputArray,int)': 인수 3을(를) 'cv::DecompTypes'에서 'cv::OutputArray'(으)로 변환할 수 없습니다.
+C:\SSU\GitPractice\DLTcalibration\DLT_dll\DLT_Method.cpp(103,43): message : 원인: 'cv::DecompTypes'에서 'const cv::debug_build_guard::_OutputArray'(으)로 변환할 수 없습니다.
+C:\SSU\GitPractice\DLTcalibration\DLT_dll\DLT_Method.cpp(103,33): message : 이 변환을 수행할 수 있는 사용 가능한 사용자 정의 변환 연산자가 없거나 연산자를 호출할 수 없습니다.
+D:\opencv\build\include\opencv2\core.hpp(1927,19): message : 'cv::solve' 선언을 참조하십시오.
+C:\SSU\GitPractice\DLTcalibration\DLT_dll\DLT_Method.cpp(118,95): warning C4190: 'projectPoints'에 C 연결을 지정했으나 C와 호환되지 않는 UDT 'cv::Mat'을(를) 반환합니다.
+D:\opencv\build\include\opencv2\core\mat.hpp(810): message : 'cv::Mat' 선언을 참조하십시오.

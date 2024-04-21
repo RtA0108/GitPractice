@@ -6,6 +6,7 @@ TagManager:
   tags:
   - something
   - ScreenActivation
+  - SphereIn2D
   layers:
   - Default
   - TransparentFX

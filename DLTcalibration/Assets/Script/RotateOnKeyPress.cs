@@ -73,80 +73,80 @@ using UnityEngine;
 // }
 
 
-public class RotateOnKeyPress : MonoBehaviour
-{
-    private bool isRotationMode = false;
+// public class RotateOnKeyPress : MonoBehaviour
+// {
+//     private bool isRotationMode = false;
 
-    private bool isDragging = false;
-    private Vector3 originalMousePosition;
+//     private bool isDragging = false;
+//     private Vector3 originalMousePosition;
 
-    void Start()
-    {
+//     void Start()
+//     {
         
-    }
+//     }
 
-    void Update()
-    {
-        // Check for the 'R' key press
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            // Toggle between rotation mode and restoring original state
-            isRotationMode = !isRotationMode;
+//     void Update()
+//     {
+//         // Check for the 'R' key press
+//         if (Input.GetKeyDown(KeyCode.R))
+//         {
+//             // Toggle between rotation mode and restoring original state
+//             isRotationMode = !isRotationMode;
             
-        }
+//         }
 
-        // Rotate the mesh in rotation mode
-        if (isRotationMode)
-        {
-            // Check for mouse button down to start dragging
-             if (Input.GetMouseButtonDown(0))
-            {
-                StartDrag();
-            }
+//         // Rotate the mesh in rotation mode
+//         if (isRotationMode)
+//         {
+//             // Check for mouse button down to start dragging
+//              if (Input.GetMouseButtonDown(0))
+//             {
+//                 StartDrag();
+//             }
 
-            // Check for mouse button release to stop dragging
-            if (Input.GetMouseButtonUp(0))
-            {
-                StopDrag();
-            }
-            // Rotate the mesh while dragging
-            if (isDragging)
-            {
-                RotateOnDrag();
-            }
-        }
+//             // Check for mouse button release to stop dragging
+//             if (Input.GetMouseButtonUp(0))
+//             {
+//                 StopDrag();
+//             }
+//             // Rotate the mesh while dragging
+//             if (isDragging)
+//             {
+//                 RotateOnDrag();
+//             }
+//         }
 
 
         
-    }
+//     }
 
-    void StartDrag()
-    {
-        // Store the original mouse position when dragging starts
-        isDragging = true;
-        originalMousePosition = Input.mousePosition;
-    }
+//     void StartDrag()
+//     {
+//         // Store the original mouse position when dragging starts
+//         isDragging = true;
+//         originalMousePosition = Input.mousePosition;
+//     }
 
-    void StopDrag()
-    {
-        // Stop dragging when the mouse button is released
-        isDragging = false;
-    }
+//     void StopDrag()
+//     {
+//         // Stop dragging when the mouse button is released
+//         isDragging = false;
+//     }
 
-    void RotateOnDrag()
-    {
-        // Calculate the mouse movement since the last frame
-        Vector3 deltaMouse = Input.mousePosition - originalMousePosition;
+//     void RotateOnDrag()
+//     {
+//         // Calculate the mouse movement since the last frame
+//         Vector3 deltaMouse = Input.mousePosition - originalMousePosition;
 
-        // Calculate rotation angles based on mouse movement
-        float rotateX = deltaMouse.y;
-        float rotateY = -deltaMouse.x;
+//         // Calculate rotation angles based on mouse movement
+//         float rotateX = deltaMouse.y;
+//         float rotateY = -deltaMouse.x;
 
-        // Rotate the mesh based on the calculated angles
-        transform.Rotate(Vector3.up, rotateY, Space.World);
-        transform.Rotate(Vector3.right, rotateX, Space.World);
+//         // Rotate the mesh based on the calculated angles
+//         transform.Rotate(Vector3.up, rotateY, Space.World);
+//         transform.Rotate(Vector3.right, rotateX, Space.World);
 
-        // Update the original mouse position for the next frame
-        originalMousePosition = Input.mousePosition;
-    }
-}
+//         // Update the original mouse position for the next frame
+//         originalMousePosition = Input.mousePosition;
+//     }
+// }

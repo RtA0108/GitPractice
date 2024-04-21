@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class VertexInteraction : MonoBehaviour
 {
+    public GameObject newMeshPrefab;
+    private GameObject createdMesh;
+
     private Color originalColor;
     private Renderer renderer;
+    private static int meshCounter = 0;
     private bool copied = false;
     void Start()
     {
@@ -21,8 +25,15 @@ public class VertexInteraction : MonoBehaviour
         renderer.material.color = renderer.material.color == originalColor ? Color.red : originalColor;
         Debug.Log(this.transform.position);
         if (!copied){
-            GameObject copy = Instantiate(gameObject);
-            copy.transform.Translate(0f,0f,-10f);
+            createdMesh = Instantiate(newMeshPrefab, this.transform.position, Quaternion.identity);
+            Vector3 newPos = createdMesh.transform.position;
+            newPos.z = -10f; // Change this value as needed
+            createdMesh.transform.position = newPos;
+            // GameObject copy = Instantiate(gameObject);
+            // copy.transform.Translate(0f,0f,-10f);
+            // copy.transform.Position()
+            createdMesh.name = "2D_Vertex_" + meshCounter.ToString();
+            meshCounter++;
             copied = true;
         }
         
