@@ -80,12 +80,15 @@ public class MoveVertex : MonoBehaviour
 
     void DragSelectedMesh()
     {
+        projectCamera = GameObject.Find("Project Camera").GetComponent<Camera>();
         Vector3 mousePosition = Input.mousePosition;
 
         // Convert screen coordinates to world coordinates using the camera targeting display 2
-        mousePosition.z = -10.0f; // Set the z-coordinate to initialZ
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
+        mousePosition.z = 4.0f; // Set the z-coordinate to initialZ
+        Vector3 worldPosition = projectCamera.ScreenToWorldPoint(mousePosition);
+        //worldPosition.x = -worldPosition.x;
+        //worldPosition.y = -worldPosition.y;
+        //worldPosition.z = -offset.z;
         // Update the position of the selected mesh while maintaining the z-coordinate
         transform.position = worldPosition + offset;
 

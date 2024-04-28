@@ -27,7 +27,7 @@ public class VertexInteraction : MonoBehaviour
         if (!copied){
             createdMesh = Instantiate(newMeshPrefab, this.transform.position, Quaternion.identity);
             Vector3 newPos = createdMesh.transform.position;
-            newPos.z = -10f; // Change this value as needed
+            newPos.x += 100f; // Change this value as needed
             createdMesh.transform.position = newPos;
             // GameObject copy = Instantiate(gameObject);
             // copy.transform.Translate(0f,0f,-10f);

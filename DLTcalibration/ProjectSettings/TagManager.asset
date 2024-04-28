@@ -7,6 +7,7 @@ TagManager:
   - something
   - ScreenActivation
   - SphereIn2D
+  - Project Camera
   layers:
   - Default
   - TransparentFX
