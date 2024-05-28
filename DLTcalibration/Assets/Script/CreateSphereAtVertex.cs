@@ -7,7 +7,8 @@ public class CreateSphereAtVertex : MonoBehaviour
     //public GameObject cube; // Assign the cube GameObject in the Inspector
     public GameObject vertexSphere;
     private Quaternion originalRotation;
-
+    public int vertexCount;
+    //public GameObject[] objects = GameObject.FindGameObjectsWithTag("something");
     void Start()
     {
         // Example: Create a sphere at vertex index 0 of the cube
@@ -29,6 +30,7 @@ public class CreateSphereAtVertex : MonoBehaviour
                     // Get the cube's mesh
                     Mesh cubeMesh = cubeMeshFilter.sharedMesh;
                     int indexNumber = 0;
+                    vertexCount = cubeMesh.vertices.Length;
                     for(int i = 0; i<cubeMesh.vertices.Length; i++) {
                         // Get the world position of the specified vertex
                         Vector3 vertexPosition = obj.transform.TransformPoint(cubeMesh.vertices[i]);
@@ -53,7 +55,7 @@ public class CreateSphereAtVertex : MonoBehaviour
                         vertexSphere.name = "vertex" + indexNumber;
                         
                     }
-                    Object[] allObjects = Object.FindObjectsOfType<GameObject>();
+                    UnityEngine.Object[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
                     foreach (GameObject vertexSphere in allObjects){
                         //Debug.Log(somethingElse + "is an active object" + somethingElse.GetInstanceID());
                         //vertex 위치 출력

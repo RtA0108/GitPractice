@@ -22,6 +22,10 @@ public class MoveVertex : MonoBehaviour
     // Offset between mouse click position and object center
     private Vector3 offset;
     public Camera projectCamera;
+    public Vector3 vertexPosition;
+    void Awake(){
+        vertexPosition = transform.position;
+    }
     void OnMouseDown()
     {
         // Check if a mesh is currently selected

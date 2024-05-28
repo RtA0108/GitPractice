@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16bb25d6de832cf418e19cce60344f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reference: {fileID: 2044514251}
+  reference: {fileID: 0}
   rotateSpeed: 500
   scrollSpeed: 2000
 --- !u!1 &410087039
@@ -494,6 +494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertexSphere: {fileID: 6118707599407543504, guid: cb39c0176f4d24948908708ff7035973,
     type: 3}
+  vertexCount: 0
 --- !u!4 &561774216
 Transform:
   m_ObjectHideFlags: 0
@@ -887,6 +888,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: 27b702340b53f2047a470c5c6cc188df,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 27b702340b53f2047a470c5c6cc188df,
+        type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
@@ -894,7 +900,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3548be999410c674f8b82ea4615a81b8, type: 2}
+      objectReference: {fileID: -3033667219593020291, guid: 27b702340b53f2047a470c5c6cc188df,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: 27b702340b53f2047a470c5c6cc188df,
         type: 3}
       propertyPath: m_Name
@@ -1089,6 +1096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vertexClickTest: {fileID: 2099357156}
+  createSphereAtVertex: {fileID: 561774215}
 --- !u!114 &2099357156
 MonoBehaviour:
   m_ObjectHideFlags: 0
