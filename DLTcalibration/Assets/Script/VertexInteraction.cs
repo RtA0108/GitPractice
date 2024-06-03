@@ -5,8 +5,11 @@ using UnityEngine;
 public class VertexInteraction : MonoBehaviour
 {
     public GameObject newMeshPrefab;
-    private GameObject createdMesh;
+    //새로 생성된 Vertex의 screenCoord를 지속적으로 저장 (마우스 위치가 아니라 sphere의 위치로 저장해야 함)
+    public Dictionary<int, Vector2> screenCoord = new Dictionary<int, Vector2>();
 
+    private GameObject createdMesh;
+    
     private Color originalColor;
     private Renderer renderer;
     private static int meshCounter = 0;

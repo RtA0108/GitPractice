@@ -1,19 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CreateSphereAtVertex : MonoBehaviour
 {
     //public GameObject cube; // Assign the cube GameObject in the Inspector
+    // GameObject는 다른 게임 오브젝트를 엑세스 하기 위해 필요한듯 (이 경우는 vertex를 표시하기 위한 구의 prefap 저장)
     public GameObject vertexSphere;
+    // 기존 회전 정보 저장 | Quaternion은 (x,y,z,w)로 표현
     private Quaternion originalRotation;
+    // vertex 개수 저장
     public int vertexCount;
-    //public GameObject[] objects = GameObject.FindGameObjectsWithTag("something");
+    
+    public struct VertexStruct
+    {
+        public int index;
+        public Vector3 worldCoordinate;
+        public Vector2 screenCoordinate;
+        public VertexStruct(int vertexIndex, Vector3 worldCoord, Vector2 screenCoord)
+        {
+            index = vertexIndex;
+            worldCoordinate = worldCoord;
+            screenCoordinate = screenCoord;
+        }
+    }
     void Start()
     {
         // Example: Create a sphere at vertex index 0 of the cube
-        //int vertexIndex = 0;
-
+        //something 태그가 있는 모든 개체 찾기
         GameObject[] objects = GameObject.FindGameObjectsWithTag("something");
         
         // Ensure the cube GameObject is assigned
@@ -22,38 +37,41 @@ public class CreateSphereAtVertex : MonoBehaviour
             foreach(GameObject obj in objects) 
             {
                 // Get the mesh filter of the cube
+                // MeshFilter 내부엔 vertex와 uv정보가 모두 들어있음
                 MeshFilter cubeMeshFilter = obj.GetComponent<MeshFilter>();
-                Dictionary<Vector3, int> posIndex = new Dictionary<Vector3, int>();
+                Dictionary<int, Vector3> posIndex = new Dictionary<int, Vector3>();
+                Dictionary<Vector2, int> uvIndex = new Dictionary<Vector2, int>();
                 // Ensure the mesh filter is not null and has a mesh
                 if (cubeMeshFilter != null && cubeMeshFilter.sharedMesh != null)
                 {
                     // Get the cube's mesh
                     Mesh cubeMesh = cubeMeshFilter.sharedMesh;
-                    int indexNumber = 0;
+                    int indexNumber = 1;
                     vertexCount = cubeMesh.vertices.Length;
                     for(int i = 0; i<cubeMesh.vertices.Length; i++) {
                         // Get the world position of the specified vertex
                         Vector3 vertexPosition = obj.transform.TransformPoint(cubeMesh.vertices[i]);
-                        if(posIndex.ContainsKey(vertexPosition)){
+                        if(posIndex.FirstOrDefault(x => x.Value == vertexPosition).Key != 0){
                             continue;
                         }
                         else{
-                            posIndex.Add(vertexPosition, indexNumber);
+                            posIndex.Add(indexNumber, vertexPosition);
                             indexNumber++;
                         }
-                        // Create a sphere at the vertex position
-                        //GameObject vertexSphere = new GameObject("vertex" + indexNumber);
                         
-                        //vertexSphere.transform.position = vertexPosition;
-                        //vertexSphere.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
-                        // GameObject somethingElse = new GameObject("vertex" + indexNumber);
-                        // somethingElse.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
-                        
+                        Vector2 uvCoordinate = cubeMesh.uv[i];
+                        uvIndex.Add(uvCoordinate, indexNumber);
+
+
                         //vertex가 가시적으로 
                         Instantiate(vertexSphere, vertexPosition, Quaternion.identity);
                         vertexSphere.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
                         vertexSphere.name = "vertex" + indexNumber;
                         
+                    }
+                    foreach (KeyValuePair <int, Vector3 > key in posIndex)
+                    {
+                        Debug.Log("Key (Vertex Position): " + key.Value + "Number: " + key.Key);
                     }
                     UnityEngine.Object[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
                     foreach (GameObject vertexSphere in allObjects){
@@ -62,7 +80,7 @@ public class CreateSphereAtVertex : MonoBehaviour
                         Debug.Log(vertexSphere.transform.position);
                     }
                 }
-                               // Optional: Attach the sphere to a parent object for organization
+                // Optional: Attach the sphere to a parent object for organization
                 // sphere.transform.parent = cube.transform;
 
             else
