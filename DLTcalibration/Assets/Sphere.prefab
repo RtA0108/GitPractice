@@ -138,3 +138,5 @@ MonoBehaviour:
   screenCoordinates: []
   worldPoints: []
   imagePoints: []
+  arrayIndex: 0
+  projectCam: {fileID: 0}

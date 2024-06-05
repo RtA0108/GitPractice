@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,19 +10,21 @@ public class VertexInteraction : MonoBehaviour
     public Dictionary<int, Vector2> screenCoord = new Dictionary<int, Vector2>();
 
     private GameObject createdMesh;
-    
+    private GameObject LVManger;
     private Color originalColor;
-    private Renderer renderer;
+    private new Renderer renderer;
     private static int meshCounter = 0;
+    private int meshIndex = 0;
     private bool copied = false;
     void Start()
     {
+        
         // Get the renderer component to access the material color
         renderer = GetComponent<Renderer>();
 
         // Store the original color
         originalColor = renderer.material.color;
-
+        LVManger = GameObject.Find("LevelManager");
     }
     private void OnMouseDown()
     {
@@ -30,7 +33,9 @@ public class VertexInteraction : MonoBehaviour
         if (!copied){
             createdMesh = Instantiate(newMeshPrefab, this.transform.position, Quaternion.identity);
             Vector3 newPos = createdMesh.transform.position;
-            newPos.x += 100f; // Change this value as needed
+            meshIndex = LVManger.GetComponent<VertexClickTest>().arrayIndex;
+            LVManger.GetComponent<VertexClickTest>().verticesStruct[meshIndex].worldCoordinate = newPos;
+            newPos.z += 1000f; // Change this value as needed
             createdMesh.transform.position = newPos;
             // GameObject copy = Instantiate(gameObject);
             // copy.transform.Translate(0f,0f,-10f);

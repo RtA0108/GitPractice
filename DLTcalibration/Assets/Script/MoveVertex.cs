@@ -9,10 +9,10 @@ public class MoveVertex : MonoBehaviour
 
     // Material for the selected color of the mesh 
     public Color selectedColor = Color.red;
-
+    private GameObject LVManger;
     // Variable to hold the reference to the selected mesh
     private GameObject selectedMesh;
-
+    public Camera projectCam;
     // Flag to indicate if a mesh is currently selected
     private bool meshSelected = false;
 
@@ -21,10 +21,16 @@ public class MoveVertex : MonoBehaviour
 
     // Offset between mouse click position and object center
     private Vector3 offset;
-    public Camera projectCamera;
+    public int IDX;
     public Vector3 vertexPosition;
     void Awake(){
         vertexPosition = transform.position;
+        Camera cam = GameObject.FindGameObjectWithTag("Project Camera").gameObject.GetComponent<Camera>();
+        projectCam = cam;
+        LVManger = GameObject.Find("LevelManager");
+        IDX = LVManger.GetComponent<VertexClickTest>().arrayIndex;
+        Debug.Log(IDX);
+        Debug.Log(this.transform.position);
     }
     void OnMouseDown()
     {
@@ -38,6 +44,7 @@ public class MoveVertex : MonoBehaviour
         {
             // Deselect the selected mesh
             DeselectMesh();
+            
         }
     }
 
@@ -47,7 +54,11 @@ public class MoveVertex : MonoBehaviour
         {
             //Debug.Log("Go");
             // Perform dragging of the selected mesh
+
             DragSelectedMesh();
+            //렉걸리면 DeselecMesh로
+            UpdatePosition();
+
         }
     }
 
@@ -81,15 +92,19 @@ public class MoveVertex : MonoBehaviour
         selectedMesh = null;
         meshSelected = false;
     }
-
+    void UpdatePosition()
+    {
+        LVManger.GetComponent<VertexClickTest>().verticesStruct[IDX].screenCoordinate = new Vector2(projectCam.WorldToScreenPoint(this.transform.position).x, projectCam.pixelHeight - projectCam.WorldToScreenPoint(this.transform.position).y);
+        Debug.Log("3D Coord" + this.transform.position + "screen Coord:" + LVManger.GetComponent<VertexClickTest>().verticesStruct[IDX].screenCoordinate);
+    }
     void DragSelectedMesh()
     {
-        projectCamera = GameObject.Find("Project Camera").GetComponent<Camera>();
+        projectCam = GameObject.Find("Project Camera").GetComponent<Camera>();
         Vector3 mousePosition = Input.mousePosition;
 
         // Convert screen coordinates to world coordinates using the camera targeting display 2
         mousePosition.z = 4.0f; // Set the z-coordinate to initialZ
-        Vector3 worldPosition = projectCamera.ScreenToWorldPoint(mousePosition);
+        Vector3 worldPosition = projectCam.ScreenToWorldPoint(mousePosition);
         //worldPosition.x = -worldPosition.x;
         //worldPosition.y = -worldPosition.y;
         //worldPosition.z = -offset.z;

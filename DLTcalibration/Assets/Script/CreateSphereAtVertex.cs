@@ -12,51 +12,42 @@ public class CreateSphereAtVertex : MonoBehaviour
     private Quaternion originalRotation;
     // vertex 개수 저장
     public int vertexCount;
-    
-    public struct VertexStruct
-    {
-        public int index;
-        public Vector3 worldCoordinate;
-        public Vector2 screenCoordinate;
-        public VertexStruct(int vertexIndex, Vector3 worldCoord, Vector2 screenCoord)
-        {
-            index = vertexIndex;
-            worldCoordinate = worldCoord;
-            screenCoordinate = screenCoord;
-        }
-    }
+    public int indexNumber;
+    public Dictionary<int, Vector3> posIndex;
     void Start()
     {
         // Example: Create a sphere at vertex index 0 of the cube
         //something 태그가 있는 모든 개체 찾기
         GameObject[] objects = GameObject.FindGameObjectsWithTag("something");
-        
+        indexNumber = 0;
         // Ensure the cube GameObject is assigned
         if (objects != null)
-        {
+        { 
             foreach(GameObject obj in objects) 
             {
                 // Get the mesh filter of the cube
                 // MeshFilter 내부엔 vertex와 uv정보가 모두 들어있음
                 MeshFilter cubeMeshFilter = obj.GetComponent<MeshFilter>();
-                Dictionary<int, Vector3> posIndex = new Dictionary<int, Vector3>();
+                posIndex = new Dictionary<int, Vector3>();
                 Dictionary<Vector2, int> uvIndex = new Dictionary<Vector2, int>();
                 // Ensure the mesh filter is not null and has a mesh
                 if (cubeMeshFilter != null && cubeMeshFilter.sharedMesh != null)
                 {
                     // Get the cube's mesh
                     Mesh cubeMesh = cubeMeshFilter.sharedMesh;
-                    int indexNumber = 1;
+                    
                     vertexCount = cubeMesh.vertices.Length;
                     for(int i = 0; i<cubeMesh.vertices.Length; i++) {
                         // Get the world position of the specified vertex
                         Vector3 vertexPosition = obj.transform.TransformPoint(cubeMesh.vertices[i]);
                         if(posIndex.FirstOrDefault(x => x.Value == vertexPosition).Key != 0){
+                            
                             continue;
                         }
                         else{
-                            posIndex.Add(indexNumber, vertexPosition);
                             indexNumber++;
+                            posIndex.Add(indexNumber, vertexPosition);
+                            
                         }
                         
                         Vector2 uvCoordinate = cubeMesh.uv[i];

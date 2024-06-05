@@ -495,6 +495,7 @@ MonoBehaviour:
   vertexSphere: {fileID: 6118707599407543504, guid: cb39c0176f4d24948908708ff7035973,
     type: 3}
   vertexCount: 0
+  indexNumber: 0
 --- !u!4 &561774216
 Transform:
   m_ObjectHideFlags: 0
@@ -641,7 +642,7 @@ Transform:
   m_GameObject: {fileID: 808022736}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 100, y: 2, z: -4}
+  m_LocalPosition: {x: 0, y: 2, z: 996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1114,6 +1115,8 @@ MonoBehaviour:
   screenCoordinates: []
   worldPoints: []
   imagePoints: []
+  arrayIndex: 0
+  projectCam: {fileID: 808022739}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
