@@ -17,7 +17,7 @@ public class MoveVertex : MonoBehaviour
     private bool meshSelected = false;
 
     // Flag to indicate if the mesh is being dragged
-    private bool isDragging = false;
+    //private bool isDragging = false;
 
     // Offset between mouse click position and object center
     private Vector3 offset;

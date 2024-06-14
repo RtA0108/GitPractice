@@ -120,3 +120,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   selectedColor: {r: 1, g: 0, b: 0.009897232, a: 1}
+  projectCam: {fileID: 0}
+  IDX: 0
+  vertexPosition: {x: 0, y: 0, z: 0}

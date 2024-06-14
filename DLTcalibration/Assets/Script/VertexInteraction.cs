@@ -48,40 +48,7 @@ public class VertexInteraction : MonoBehaviour
     }
     void Update()
     {
-        // Cast a ray from the mouse position
-        // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        // RaycastHit hit;
-
-        // // Check if the ray hits a collider
-        // if (Physics.Raycast(ray, out hit))
-        // {
-        //     // Check if the collider is attached to the same GameObject
-        //     if (Input.GetMouseButtonDown(0))
-        //     {
-        //         // Change the color when the mouse hovers over the vertex
-        //        // renderer.material.color = Color.red;
-
-        //         // Check for mouse click
-        //         if (hit.collider.gameObject == gameObject)
-        //         {
-        //             // Change the color when the mouse is clicked
-        //             renderer.material.color = Color.green;
-
-        //             // Do something with the selected vertex
-        //             Debug.Log("Clicked on vertex at: " + hit.point);
-        //         }
-        //     }
-        //     else
-        //     {
-        //         // Restore the original color when not hovering over the vertex
-        //         //renderer.material.color = originalColor;
-        //     }
-        // }
-        // else
-        // {
-        //     // Restore the original color when not hitting any collider
-        //     renderer.material.color = originalColor;
-        // }
+ 
     }
 
    

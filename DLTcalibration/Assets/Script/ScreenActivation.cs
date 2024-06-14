@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScreenActivation : MonoBehaviour
 {
+    public int refreshRate = 120;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,15 +16,16 @@ public class ScreenActivation : MonoBehaviour
 
         // DontDestroyOnLoad(gameObject); 
         foreach (var disp in Display.displays){
-            disp.Activate(disp.systemWidth, disp.systemHeight, 60);
+            disp.Activate(disp.systemWidth, disp.systemHeight, new RefreshRate() { numerator = 60, denominator = 1 });
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        // foreach (var disp in Display.displays){
-        //     disp.Activate(disp.systemWidth, disp.systemHeight, 60);
-        // }
+        foreach (var disp in Display.displays)
+        {
+            disp.Activate(disp.systemWidth, disp.systemHeight, new RefreshRate() { numerator = 60, denominator = 1 });
+        }
     }
 }
